@@ -2,6 +2,7 @@ package commandservice;
 
 import commandservice.commands.AddCommand;
 import commandservice.commands.EraseCommand;
+import commandservice.commands.RemoveCommand;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -34,6 +35,9 @@ public class CommandHandler extends ListenerAdapter {
         }
         if(command.equals("!add")){
             return AddCommand.getInstance();
+        }
+        if(command.equals("!remove")){
+            return RemoveCommand.getInstance();
         }
         return null;
     }
