@@ -1,5 +1,6 @@
 package commandservice;
 
+import commandservice.commands.AddCommand;
 import commandservice.commands.EraseCommand;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -29,6 +30,9 @@ public class CommandHandler extends ListenerAdapter {
     private Command getCommandImpl(String command){
         if(command.equals("!erase")){
             return EraseCommand.getInstance();
+        }
+        if(command.equals("!add")){
+            return AddCommand.getInstance();
         }
         return null;
     }
