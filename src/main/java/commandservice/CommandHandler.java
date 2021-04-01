@@ -1,6 +1,7 @@
 package commandservice;
 
 import commandservice.commands.EraseCommand;
+import commandservice.commands.TestCommand;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +21,20 @@ public class CommandHandler extends ListenerAdapter {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         String commandRaw = event.getMessage().getContentRaw();
-        if(commandRaw.equals("erase")){
+        command = getCommandImpl(commandRaw);
+        if(command != null) {
             command.handle(event);
         }
     }
+
+    private Command getCommandImpl(String command){
+        if(command.equals("erase")){
+            return EraseCommand.getInstance();
+        }
+        if(command.equals("test")){
+            return TestCommand.getInstance();
+        }
+        return null;
+    }
+
 }

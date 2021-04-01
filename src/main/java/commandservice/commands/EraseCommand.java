@@ -12,6 +12,17 @@ import java.util.stream.Collectors;
 
 public class EraseCommand implements Command {
 
+    private static EraseCommand instance;
+
+    private EraseCommand(){
+    }
+
+    public static EraseCommand getInstance(){
+        if(instance == null){
+            instance = new EraseCommand();
+        }
+        return instance;
+    }
 
     public final void handle(MessageReceivedEvent event){
         MessageChannel channel = event.getChannel();
