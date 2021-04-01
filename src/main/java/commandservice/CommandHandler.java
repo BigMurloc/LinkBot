@@ -21,9 +21,10 @@ public class CommandHandler extends ListenerAdapter {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         String commandRaw = event.getMessage().getContentRaw();
-        command = getCommandImpl(commandRaw);
+        String[] args = commandRaw.split(" ");
+        command = getCommandImpl(args[0]);
         if(command != null) {
-            command.handle(event);
+            command.handle(event, args);
         }
     }
 

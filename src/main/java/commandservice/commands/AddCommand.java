@@ -1,6 +1,7 @@
 package commandservice.commands;
 
 import commandservice.Command;
+import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class AddCommand implements Command {
@@ -17,7 +18,10 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public void handle(MessageReceivedEvent event) {
-
+    public void handle(MessageReceivedEvent event, String[] args) {
+        MessageChannel channel = event.getChannel();
+        for(String value: args){
+            System.out.println(value);
+        }
     }
 }

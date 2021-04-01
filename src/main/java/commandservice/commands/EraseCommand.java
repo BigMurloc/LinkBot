@@ -24,7 +24,7 @@ public class EraseCommand implements Command {
         return instance;
     }
 
-    public final void handle(MessageReceivedEvent event){
+    public final void handle(MessageReceivedEvent event, String[] args){
         MessageChannel channel = event.getChannel();
         List<String> ids = null;
         if (channel.hasLatestMessage()) {
