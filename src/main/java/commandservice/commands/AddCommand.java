@@ -30,8 +30,10 @@ public class AddCommand implements Command {
             channel.purgeMessagesById(channel.getLatestMessageId());
         }
         if(isUnique(args[1], file)) {
-            channel.sendMessage(args[1]).queue();
-            writeToFile(args[1], file, channel.getLatestMessageId());
+            channel.sendMessage(args[1]).queue((message -> {
+                String messageId = message.getId();
+                writeToFile(args[1], file, messageId);
+            }));
         }
     }
 
