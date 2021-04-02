@@ -1,18 +1,12 @@
 package commandservice.commands;
 
 import commandservice.Command;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.Scanner;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
 public class RemoveCommand implements Command {
 
@@ -43,9 +37,34 @@ public class RemoveCommand implements Command {
             String linkId = row[1];
             if(linkMessage.equals(link)){
                 channel.purgeMessagesById(linkId);
+                deleteFromFile(link+" "+linkId, file);
             }
             }
         } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteFromFile(String line, File file){
+        try {
+            File copy = new File(file.toPath().toString()+"Copy");
+            Files.copy(file.toPath(), copy.toPath());
+
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(copy));
+            PrintWriter printWriter = new PrintWriter(file);
+
+            String line1 = bufferedReader.readLine();
+            while(line1 != null){
+                if(!line.equals(line1)){
+                    printWriter.println(line1);
+                }
+                line1 = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            printWriter.flush();
+            printWriter.close();
+            Files.delete(copy.toPath());
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
