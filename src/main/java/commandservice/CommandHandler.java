@@ -12,10 +12,15 @@ public class CommandHandler extends ListenerAdapter {
 
     private Command command;
 
-    private CommandHandler() {}
+    private CommandHandler() {
+    }
+
     private static CommandHandler instance;
-    public static CommandHandler getInstance(){
-        if (instance == null) { instance = new CommandHandler(); }
+
+    public static CommandHandler getInstance() {
+        if (instance == null) {
+            instance = new CommandHandler();
+        }
         return instance;
     }
 
@@ -24,19 +29,19 @@ public class CommandHandler extends ListenerAdapter {
         String commandRaw = event.getMessage().getContentRaw();
         String[] args = commandRaw.split(" ");
         command = getCommandImpl(args[0]);
-        if(command != null) {
+        if (command != null) {
             command.handle(event, args);
         }
     }
 
-    private Command getCommandImpl(String command){
-        if(command.equals("!erase")){
+    private Command getCommandImpl(String command) {
+        if (command.equals("!erase")) {
             return EraseCommand.getInstance();
         }
-        if(command.equals("!add")){
+        if (command.equals("!add")) {
             return AddCommand.getInstance();
         }
-        if(command.equals("!remove")){
+        if (command.equals("!remove")) {
             return RemoveCommand.getInstance();
         }
         return null;
