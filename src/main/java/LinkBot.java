@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class LinkBot{
+public class LinkBot {
     public static void main(String[] args) throws LoginException, FileNotFoundException {
         Scanner scanner = new Scanner(new File("src/main/resources/token"));
         String token = scanner.nextLine();

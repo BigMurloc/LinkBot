@@ -12,8 +12,19 @@ import java.util.stream.Collectors;
 
 public class EraseCommand implements Command {
 
+    private static EraseCommand instance;
 
-    public final void handle(MessageReceivedEvent event){
+    private EraseCommand() {
+    }
+
+    public static EraseCommand getInstance() {
+        if (instance == null) {
+            instance = new EraseCommand();
+        }
+        return instance;
+    }
+
+    public final void handle(MessageReceivedEvent event, String[] args) {
         MessageChannel channel = event.getChannel();
         List<String> ids = null;
         if (channel.hasLatestMessage()) {
@@ -29,7 +40,7 @@ public class EraseCommand implements Command {
                 e.printStackTrace();
             }
         }
-        if(ids !=  null){
+        if (ids != null) {
             ids.stream().forEach(id -> channel.purgeMessagesById(id));
         }
     }
