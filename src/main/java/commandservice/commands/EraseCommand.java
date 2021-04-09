@@ -16,8 +16,6 @@ public class EraseCommand implements Command {
 
     private static EraseCommand instance;
 
-    private EraseCommand() {}
-
     public static EraseCommand getInstance() {
         if (instance == null) {
             instance = new EraseCommand();
@@ -45,5 +43,7 @@ public class EraseCommand implements Command {
             ids.stream().forEach(id -> channel.purgeMessagesById(id));
         }
     }
+
+    private EraseCommand() {}
 
 }

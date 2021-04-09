@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.util.Scanner;
 
 public class Utils {
+
     public static void deleteFromFile(String line, File file) {
         try {
             File copy = new File(file.toPath().toString() + "Copy");

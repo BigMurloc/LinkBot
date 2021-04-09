@@ -13,13 +13,9 @@ import java.util.Set;
 
 public class CommandHandler extends ListenerAdapter {
 
-    private final HashMap<String, Command> commands = new HashMap<>();
-
-    private CommandHandler() {
-        registerCommands();
-    }
-
     private static CommandHandler instance;
+
+    private final HashMap<String, Command> commands = new HashMap<>();
 
     public static CommandHandler getInstance() {
         if (instance == null) {
@@ -38,6 +34,11 @@ public class CommandHandler extends ListenerAdapter {
         }
     }
 //
+
+    private CommandHandler() {
+        registerCommands();
+    }
+
     private void registerCommands() {
         Reflections reflections = new Reflections(Command.class.getPackageName() + ".commands");
         Set<Class<? extends Command>> classes = reflections.getSubTypesOf(Command.class);
@@ -51,8 +52,8 @@ public class CommandHandler extends ListenerAdapter {
                         Command command = (Command) method.invoke(null);
                         commands.put(commandName, command);
                     }
-                } catch (Throwable t) {
-                    t.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }

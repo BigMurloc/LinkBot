@@ -14,8 +14,6 @@ public class RemoveCommand implements Command {
 
     private static RemoveCommand instance;
 
-    private RemoveCommand() {}
-
     public static RemoveCommand getInstance() {
         if (instance == null) {
             instance = new RemoveCommand();
@@ -48,5 +46,5 @@ public class RemoveCommand implements Command {
         }
     }
 
-
+    private RemoveCommand() {}
 }
