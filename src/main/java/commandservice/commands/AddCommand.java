@@ -1,21 +1,20 @@
 package commandservice.commands;
 
 import commandservice.Command;
+import commandservice.annotations.CommandName;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import utils.Utils;
 
 import java.io.*;
-import java.util.Scanner;
 
+@CommandName(value = "!add")
 public class AddCommand implements Command {
 
     private static AddCommand instance;
 
-    private AddCommand() {
-    }
-
-    ;
+    private AddCommand() {}
+    
 
     public static AddCommand getInstance() {
         if (instance == null) {

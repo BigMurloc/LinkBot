@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
     compile 'net.dv8tion:JDA:4.2.0_252'
+    implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }

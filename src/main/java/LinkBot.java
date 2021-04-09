@@ -1,6 +1,8 @@
+import commandservice.Command;
 import commandservice.CommandHandler;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import org.reflections.Reflections;
 
 import javax.security.auth.login.LoginException;
 import java.io.File;

@@ -1,20 +1,20 @@
 package commandservice.commands;
 
 import commandservice.Command;
+import commandservice.annotations.CommandName;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import utils.Utils;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.Scanner;
 
+@CommandName(value = "!remove")
 public class RemoveCommand implements Command {
 
     private static RemoveCommand instance;
 
-    private RemoveCommand() {
-    }
+    private RemoveCommand() {}
 
     public static RemoveCommand getInstance() {
         if (instance == null) {
