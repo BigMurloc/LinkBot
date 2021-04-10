@@ -7,7 +7,6 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import utils.Utils;
 
 import java.io.*;
-
 @CommandName(value = "!add")
 public class AddCommand implements Command {
 
