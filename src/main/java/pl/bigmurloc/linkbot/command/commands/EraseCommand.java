@@ -1,5 +1,6 @@
 package pl.bigmurloc.linkbot.command.commands;
 
+import org.springframework.stereotype.Component;
 import pl.bigmurloc.linkbot.command.Command;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
@@ -11,17 +12,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
+@Component
 @CommandName(value = "!erase")
 public class EraseCommand implements Command {
-
-    private static EraseCommand instance;
-
-    public static EraseCommand getInstance() {
-        if (instance == null) {
-            instance = new EraseCommand();
-        }
-        return instance;
-    }
 
     public final void handle(MessageReceivedEvent event, String[] args) {
         MessageChannel channel = event.getChannel();
@@ -43,7 +36,5 @@ public class EraseCommand implements Command {
             ids.stream().forEach(id -> channel.purgeMessagesById(id));
         }
     }
-
-    private EraseCommand() {}
 
 }

@@ -5,8 +5,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.reflections.Reflections;
 import pl.bigmurloc.linkbot.command.annotations.CommandName;
-
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -42,16 +40,13 @@ public class CommandHandler extends ListenerAdapter {
     private void registerCommands() {
         Reflections reflections = new Reflections(Command.class.getPackageName() + ".commands");
         Set<Class<? extends Command>> classes = reflections.getSubTypesOf(Command.class);
-        for(Class<? extends Command> clazz : classes){
-            if(clazz.isAnnotationPresent(CommandName.class)) {
+        for (Class<? extends Command> clazz : classes) {
+            if (clazz.isAnnotationPresent(CommandName.class)) {
                 try {
                     CommandName annotation = clazz.getAnnotation(CommandName.class);
                     String commandName = annotation.value();
-                    Method method = clazz.getMethod("getInstance");
-                    if(method.invoke(null) instanceof Command) {
-                        Command command = (Command) method.invoke(null);
-                        commands.put(commandName, command);
-                    }
+                    Command command = clazz.getConstructor().newInstance();
+                    commands.put(commandName, command);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
