@@ -1,10 +1,10 @@
-package commandservice;
+package pl.bigmurloc.linkbot.command;
 
-import commandservice.annotations.CommandName;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.reflections.Reflections;
+import pl.bigmurloc.linkbot.command.annotations.CommandName;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

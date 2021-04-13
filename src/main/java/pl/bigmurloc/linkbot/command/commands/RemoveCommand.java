@@ -1,10 +1,10 @@
-package commandservice.commands;
+package pl.bigmurloc.linkbot.command.commands;
 
-import commandservice.Command;
-import commandservice.annotations.CommandName;
+import pl.bigmurloc.linkbot.command.Command;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import utils.Utils;
+import pl.bigmurloc.linkbot.utils.Utils;
+import pl.bigmurloc.linkbot.command.annotations.CommandName;
 
 import java.io.*;
 import java.util.Scanner;
