@@ -10,7 +10,7 @@ import javax.security.auth.login.LoginException;
 @SpringBootApplication
 public class LinkBot {
     public static void main(String[] args) throws LoginException {
-        Dotenv dotenv = Dotenv.configure().directory("./.env").load();
+        Dotenv dotenv = Dotenv.configure().directory(".env").load();
         String token = dotenv.get("TOKEN");
         JDA jda = JDABuilder.createDefault(token).build();
         jda.addEventListener(CommandHandler.getInstance());
