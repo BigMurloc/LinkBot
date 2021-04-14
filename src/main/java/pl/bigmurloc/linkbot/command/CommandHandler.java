@@ -31,7 +31,6 @@ public class CommandHandler extends ListenerAdapter {
             command.handle(event, args);
         }
     }
-//
 
     private CommandHandler() {
         registerCommands();

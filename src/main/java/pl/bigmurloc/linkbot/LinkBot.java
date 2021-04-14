@@ -14,6 +14,5 @@ public class LinkBot {
         String token = dotenv.get("TOKEN");
         JDA jda = JDABuilder.createDefault(token).build();
         jda.addEventListener(CommandHandler.getInstance());
-        System.out.println(LinkBot.class.getPackageName());
     }
 }
