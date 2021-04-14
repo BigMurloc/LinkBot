@@ -1,4 +1,4 @@
-package commandservice.annotations;
+package pl.bigmurloc.linkbot.command.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

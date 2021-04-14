@@ -1,25 +1,18 @@
-package commandservice.commands;
+package pl.bigmurloc.linkbot.command.commands;
 
-import commandservice.Command;
-import commandservice.annotations.CommandName;
+import org.springframework.stereotype.Component;
+import pl.bigmurloc.linkbot.command.Command;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import utils.Utils;
+import pl.bigmurloc.linkbot.utils.Utils;
+import pl.bigmurloc.linkbot.command.annotations.CommandName;
 
 import java.io.*;
 import java.util.Scanner;
 
+@Component
 @CommandName(value = "!remove")
 public class RemoveCommand implements Command {
-
-    private static RemoveCommand instance;
-
-    public static RemoveCommand getInstance() {
-        if (instance == null) {
-            instance = new RemoveCommand();
-        }
-        return instance;
-    }
 
     @Override
     public void handle(MessageReceivedEvent event, String[] args) {
@@ -46,5 +39,4 @@ public class RemoveCommand implements Command {
         }
     }
 
-    private RemoveCommand() {}
 }
