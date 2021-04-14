@@ -17,6 +17,9 @@ repositories {
 
 dependencies {
     compile 'net.dv8tion:JDA:4.2.0_252'
+    compile 'io.github.cdimascio:java-dotenv:3.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.postgresql:postgresql'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
