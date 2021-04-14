@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS test;
 
-CREATE TABLE message
+CREATE TABLE IF NOT EXISTS message
 (
     id         BIGINT PRIMARY KEY,
     link       TEXT,
