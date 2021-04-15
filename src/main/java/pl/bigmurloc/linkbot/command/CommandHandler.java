@@ -4,22 +4,23 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.reflections.Reflections;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 import pl.bigmurloc.linkbot.command.annotations.CommandName;
+
 import java.util.HashMap;
 import java.util.Set;
 
-
+@Component
 public class CommandHandler extends ListenerAdapter {
-
-    private static CommandHandler instance;
 
     private final HashMap<String, Command> commands = new HashMap<>();
 
-    public static CommandHandler getInstance() {
-        if (instance == null) {
-            instance = new CommandHandler();
-        }
-        return instance;
+    private final ApplicationContext context;
+
+    public CommandHandler(ApplicationContext context) {
+        this.context = context;
+        registerCommands();
     }
 
     @Override
@@ -31,13 +32,8 @@ public class CommandHandler extends ListenerAdapter {
             command.handle(event, args);
         }
     }
-//
 
-    private CommandHandler() {
-        registerCommands();
-    }
-
-    private void registerCommands() {
+    public void registerCommands() {
         Reflections reflections = new Reflections(Command.class.getPackageName() + ".commands");
         Set<Class<? extends Command>> classes = reflections.getSubTypesOf(Command.class);
         for (Class<? extends Command> clazz : classes) {
@@ -45,7 +41,7 @@ public class CommandHandler extends ListenerAdapter {
                 try {
                     CommandName annotation = clazz.getAnnotation(CommandName.class);
                     String commandName = annotation.value();
-                    Command command = clazz.getConstructor().newInstance();
+                    Command command = (Command) context.getBean(commandName);
                     commands.put(commandName, command);
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -10,7 +10,7 @@ import pl.bigmurloc.linkbot.command.annotations.CommandName;
 import java.io.*;
 import java.util.Scanner;
 
-@Component
+@Component(value = "!remove")
 @CommandName(value = "!remove")
 public class RemoveCommand implements Command {
 

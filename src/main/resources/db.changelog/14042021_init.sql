@@ -1,3 +1,4 @@
+CREATE SEQUENCE hibernate_sequence;
 CREATE TABLE IF NOT EXISTS test
 (
     id BIGINT PRIMARY KEY

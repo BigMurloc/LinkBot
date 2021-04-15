@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
-@Component
+@Component(value = "!erase")
 @CommandName(value = "!erase")
 public class EraseCommand implements Command {
 
