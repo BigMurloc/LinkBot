@@ -1,6 +1,5 @@
 package pl.bigmurloc.linkbot.command.commands;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import pl.bigmurloc.linkbot.command.Command;
 import net.dv8tion.jda.api.entities.MessageChannel;
