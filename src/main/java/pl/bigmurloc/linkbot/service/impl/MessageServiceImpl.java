@@ -40,6 +40,16 @@ public class MessageServiceImpl implements MessageService {
         return false;
     }
 
+    @Override
+    public Message findByMessageValue(String messageValue) {
+        return messageRepository.findMessageByMessageValue(messageValue);
+    }
+
+    @Override
+    public Message findByMessageId(Long messageId) {
+        return messageRepository.findMessageByDiscordMessageId(messageId);
+    }
+
 
     private boolean doesExist(Message message){
         return messageRepository.existsByMessageValue(message.getMessageValue());
