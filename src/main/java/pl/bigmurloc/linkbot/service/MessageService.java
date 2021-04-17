@@ -6,7 +6,8 @@ import pl.bigmurloc.linkbot.entity.Message;
 @Service
 public interface MessageService {
 
-    void add(Message message);
+    boolean add(Message message);
     void remove(Message message);
+    boolean update(Message message);
 
 }

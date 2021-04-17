@@ -21,16 +21,19 @@ public class AddCommand implements Command {
 
     @Override
     public void handle(MessageReceivedEvent event, String[] args) {
+        String messageValue = args[1];
         MessageChannel channel = event.getChannel();
+        Message message = new Message();
+        message.setMessageValue(messageValue);
         if (channel.hasLatestMessage()) {
             channel.purgeMessagesById(channel.getLatestMessageId());
         }
-        channel.sendMessage(args[1]).queue((response -> {
-            Message message = new Message();
-            message.setMessageValue(response.getContentRaw());
-            message.setDiscordMessageId(response.getIdLong());
-            message.setAuthor(response.getAuthor().getIdLong());
-            messageService.add(message);
-        }));
+        if(messageService.add(message)) {
+            channel.sendMessage(messageValue).queue((response -> {
+                message.setDiscordMessageId(response.getIdLong());
+                message.setAuthor(response.getAuthor().getIdLong());
+                messageService.update(message);
+            }));
+        }
     }
 }

@@ -16,10 +16,12 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void add(Message message) {
+    public boolean add(Message message) {
         if(!doesExist(message)) {
             messageRepository.save(message);
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -27,6 +29,15 @@ public class MessageServiceImpl implements MessageService {
         if(doesExist(message)){
             messageRepository.delete(message);
         }
+    }
+
+    @Override
+    public boolean update(Message message) {
+        if(doesExist(message)) {
+            messageRepository.save(message);
+            return true;
+        }
+        return false;
     }
 
 
