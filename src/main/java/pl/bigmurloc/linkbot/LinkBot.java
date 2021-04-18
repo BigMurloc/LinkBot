@@ -12,8 +12,6 @@ import javax.security.auth.login.LoginException;
 
 @SpringBootApplication
 public class LinkBot {
-
-
     public static void main(String[] args) throws LoginException {
         ApplicationContext context = (SpringApplication.run(LinkBot.class, args));
         Dotenv dotenv = Dotenv.configure().directory(".env").load();
