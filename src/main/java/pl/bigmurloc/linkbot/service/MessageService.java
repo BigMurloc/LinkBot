@@ -9,6 +9,7 @@ public interface MessageService {
     boolean add(Message message);
     void remove(Message message);
     boolean update(Message message);
+    boolean doesExist(Message message);
     Message findByMessageValue(String messageValue);
     Message findByMessageId(Long messageId);
 

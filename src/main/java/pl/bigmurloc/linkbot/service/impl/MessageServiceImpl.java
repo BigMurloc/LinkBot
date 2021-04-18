@@ -51,7 +51,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
 
-    private boolean doesExist(Message message){
+    public boolean doesExist(Message message){
         return messageRepository.existsByMessageValue(message.getMessageValue());
     }
 }
