@@ -19,7 +19,9 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void add(Message message) {
-        if(doesExist(message)) {
+        boolean doesExist = messageRepository
+                .existsByMessageValue(message.getMessageValue());
+        if(doesExist) {
             throw new MessageAlreadyExistsException();
         }
         messageRepository.save(message);
@@ -27,14 +29,19 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void remove(Message message) {
-        if(doesExist(message)){
-            messageRepository.delete(message);
+        boolean doesExist = messageRepository
+                .existsByMessageValue(message.getMessageValue());
+        if(!doesExist){
+            throw new MessageDoesNotExistException();
         }
+        messageRepository.delete(message);
     }
 
     @Override
     public void update(Message message) {
-        if(!doesExist(message)) {
+        boolean doesExist = messageRepository
+                .existsByMessageValue(message.getMessageValue());
+        if(!doesExist) {
             throw new MessageDoesNotExistException();
         }
         messageRepository.save(message);
