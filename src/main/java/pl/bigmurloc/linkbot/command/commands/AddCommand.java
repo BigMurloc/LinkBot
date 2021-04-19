@@ -27,11 +27,11 @@ public class AddCommand implements Command {
         if (channel.hasLatestMessage()) {
             channel.purgeMessagesById(channel.getLatestMessageId());
         }
-        if(messageService.doesExist(message)) {
+        if(!messageService.doesExist(message)) {
             channel.sendMessage(messageValue).queue((response -> {
                 message.setDiscordMessageId(response.getIdLong());
                 message.setAuthor(response.getAuthor().getIdLong());
-                messageService.update(message);
+                messageService.add(message);
             }));
         }
     }
