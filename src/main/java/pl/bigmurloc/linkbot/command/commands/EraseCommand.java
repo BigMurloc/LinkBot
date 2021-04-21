@@ -6,7 +6,6 @@ import pl.bigmurloc.linkbot.command.Command;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import pl.bigmurloc.linkbot.command.annotations.CommandName;
 import pl.bigmurloc.linkbot.service.MessageService;
 
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 @Component(value = "!erase")
-@CommandName(value = "!erase")
 public class EraseCommand implements Command {
 
     private final MessageService messageService;

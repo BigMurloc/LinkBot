@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 import org.reflections.Reflections;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-import pl.bigmurloc.linkbot.command.annotations.CommandName;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -37,9 +36,9 @@ public class CommandHandler extends ListenerAdapter {
         Reflections reflections = new Reflections(Command.class.getPackageName() + ".commands");
         Set<Class<? extends Command>> classes = reflections.getSubTypesOf(Command.class);
         for (Class<? extends Command> clazz : classes) {
-            if (clazz.isAnnotationPresent(CommandName.class)) {
+            if (clazz.isAnnotationPresent(Component.class)) {
                 try {
-                    CommandName annotation = clazz.getAnnotation(CommandName.class);
+                    Component annotation = clazz.getAnnotation(Component.class);
                     String commandName = annotation.value();
                     Command command = (Command) context.getBean(commandName);
                     commands.put(commandName, command);
