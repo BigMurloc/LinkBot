@@ -6,10 +6,8 @@ import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import pl.bigmurloc.linkbot.entity.Message;
 import pl.bigmurloc.linkbot.service.MessageService;
-import pl.bigmurloc.linkbot.command.annotations.CommandName;
 
 @Component(value = "!remove")
-@CommandName(value = "!remove")
 public class RemoveCommand implements Command {
 
     private final MessageService messageService;
